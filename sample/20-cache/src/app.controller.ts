@@ -1,15 +1,19 @@
 import {
-  CacheInterceptor,
-  Controller,
-  Get,
-  UseInterceptors,
+    CacheInterceptor,
+    Controller,
+    Get,
+    UseInterceptors,
 } from '@nestjs/common';
+import {CacheKey, SetTTL } from './common/ttl.doc';
 
-@Controller()
+@Controller('/gaoyixia')
 @UseInterceptors(CacheInterceptor)
 export class AppController {
-  @Get()
-  findAll() {
-    return [{ id: 1, name: 'Nest' }];
-  }
+    @Get()
+    @CacheKey('aoaojiao')
+    @SetTTL(10)
+    findAll() {
+        console.log('这个地方是我们的 get all controller 的handler')
+        return [{id: 1, name: 'Nes就看见了看t'}];
+    }
 }
