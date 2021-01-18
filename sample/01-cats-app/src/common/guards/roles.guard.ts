@@ -8,19 +8,12 @@ export class RolesGuard implements CanActivate {
   }
 
   canActivate(context: ExecutionContext): boolean {
-
-    return true;
-    console.log( context.getHandler()) // 返回的就是这个方法
     const roles = this.reflector.get<string[]>('roles', context.getHandler());
-    context.getHandler()
-    console.log('这么牛逼吗? ',roles,context.getHandler())
     if (!roles) {
       return true;
     }
     const request = context.switchToHttp().getRequest();
-
-    const user = request.user;
-    // console.log('user:: ', user, request)
+    const user = request.user;  // 因为一般我们会把user的信息放在 request 上
     const hasRole = () =>
       user.roles.some(role => !!roles.find(item => item === role));
 
