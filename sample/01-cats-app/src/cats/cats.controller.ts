@@ -12,12 +12,13 @@ export class CatsController {
   constructor(private readonly catsService: CatsService) {}
 
   @Post()
-  @Roles('admin')
+  @Roles('是不是呀')
   async create(@Body() createCatDto: CreateCatDto) {
     this.catsService.create(createCatDto);
   }
 
   @Get()
+  @Roles(' 管理员','创建者')
   async findAll(): Promise<Cat[]> {
     return this.catsService.findAll();
   }
@@ -28,5 +29,7 @@ export class CatsController {
     id: number,
   ) {
     // get by ID logic
+    console.log('至少我来过')
+    return this.catsService.findAll();
   }
 }
