@@ -9,7 +9,11 @@ import { AppController } from './app.controller';
     TypeOrmModule.forRoot({
       type: 'mongodb',
       host: 'localhost',
-      database: 'test',
+      url:'notion上有信息',
+      replicaSet:'atlas-kcykj5-shard-0',
+      authSource:'admin',
+      database: 'wang',
+      ssl: true,
       entities: [Photo],
       synchronize: true,
     }),
